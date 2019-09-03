@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    public event Action score;
+    public event Action Score;
   
 
 
@@ -18,7 +18,7 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            score();
+            Score();
             Destroy(collision.gameObject);
             Destroy(this);
         }
