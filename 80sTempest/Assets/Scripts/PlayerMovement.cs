@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public SideManager SideManeger;
     public int Pos;
+    private Vector3 VecPos;
     private Transform newPos;
     public Transform center;
+    public event Action Shoot;
 
     private void Start()
     {
@@ -17,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         transform.LookAt(center);
+        Vector3 VecPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        transform.position = VecPos;
 
         if (Input.GetKeyDown("left"))
         {
@@ -34,10 +39,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Shoot()
-    {
-
-    }
+    
 
     void GetPosL()
     {
@@ -45,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Pos = 0;
             SideManeger.sides[0].GetComponent<Side>().spawn = newPos;
+            
         }
         else
         {
